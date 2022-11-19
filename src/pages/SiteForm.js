@@ -53,22 +53,28 @@ const SiteEdit = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!(lat === 0 && lng === 0)) {
-      dispatch(
-        updateSite({
-          _id: siteId,
-          name,
-          description,
-          image,
-          category,
-          lat,
-          lng,
-        })
-      );
-      setMessage("")
+    if (image !== "" ) {
+      if (!(lat === 0 && lng === 0)) {
+        dispatch(
+          updateSite({
+            _id: siteId,
+            name,
+            description,
+            image,
+            category,
+            lat,
+            lng,
+          })
+        );
+        setMessage("")
+      } else {
+        alert("Location not found!");
+      }
     } else {
-      alert("Location not found!");
+      setMessage("something wrong with image uploading, please try again.")
+      alert("image not found");
     }
+    
   };
 
   // google map settings
