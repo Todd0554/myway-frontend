@@ -68,19 +68,21 @@ const SiteDetail = () => {
       }
     })
   }
-  if (site && site.image !== "" ){
+  console.log(site.image)
+  if (site && site.image !== undefined ){
     showImage(site.name, site.image)
   }
   
   return (
     <Container className="px-sm-5 mt-5">
-      {site.image.split("/")[1] === "images" ? (
+      {site && site.image !== undefined ? site.image.split("/")[1] === "images" ? (
         <img
             variant="top"
             src={site.image}
             alt={site.name}
             style={{width: "60vw", display: "block", margin: "0 auto"}}
           />
+          
       ) : (
         <img
         variant="top"
@@ -88,7 +90,17 @@ const SiteDetail = () => {
         id={site.name}
         style={{width: "60vw", display: "block", margin: "0 auto"}}
       />
+      ) : (
+        <img
+        variant="top"
+        src={site.image}
+        alt={site.name}
+        style={{width: "60vw", display: "block", margin: "0 auto"}}
+      />
       )}
+                  
+
+
       <h3 className="mt-5 fw-bold">{site.name}</h3>
       <p className="lh-lg fs-6">{site.description}</p>
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
