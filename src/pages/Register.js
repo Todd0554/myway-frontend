@@ -30,7 +30,13 @@ const Register = () => {
     if (userInfo && !userInfo.errors) {
       navigate(redirect);
     }
-  }, [navigate, userInfo, redirect]);
+    if (username !== ""){
+      setUsernameError("")
+    }
+    if (password !== "" && password.length < 6) {
+      setPasswordError("the number password character must be at least 6")
+    } 
+  }, [navigate, userInfo, redirect, password, username, setPasswordError, setUsernameError]);
 
   const validation = () => {
     if (!username || username === "")
@@ -71,7 +77,6 @@ const Register = () => {
               <Form.Label>Username </Form.Label>
               <Form.Control
                 type="username"
-                id="username"
                 placeholder="Jane"
                 value={username}
                 onChange={(e) => {
@@ -88,7 +93,6 @@ const Register = () => {
               <Form.Label>Email </Form.Label>
               <Form.Control
                 type="email"
-                id="email"
                 placeholder="example@gmail.com"
                 value={email}
                 onChange={(e) => {
@@ -105,7 +109,6 @@ const Register = () => {
               <Form.Label>Password </Form.Label>
               <Form.Control
                 type="password"
-                id="password"
                 placeholder="password"
                 value={password}
                 onChange={(e) => {
@@ -122,7 +125,6 @@ const Register = () => {
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
-                id="confirmPassword"
                 placeholder="password"
                 value={confirmPassword}
                 onChange={(e) => {
