@@ -17,22 +17,24 @@ const MyBlog = () => {
   const { success: successDelete } = blogDelete;
 
   useEffect(() => {
+    // get the user's blogs if there is user info from store
     if (userInfo) {
       dispatch(userAllBlogs(userInfo._id));
     }
-
-    // eslint-disable-next-line
   }, [userInfo, dispatch, successDelete]);
 
+  // create blog
   const createBlogHandler = () => {
     dispatch(createBlog);
   };
 
+  // delete blog
   const deleteBlogHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteBlog(id));
     }
   };
+
   const imageShow = () =>
     blogs.map((blog) => showImage(blog.title, blog.image));
   const showImage = async (title, name) => {
@@ -65,7 +67,12 @@ const MyBlog = () => {
         <h2 className="m-3">MY BLOG</h2>
 
         <Link to={`/blogs/${userInfo._id}/create`}>
-          <Button variant="info" className="px-4" onClick={createBlogHandler}>
+          <Button
+            id="createBlogButton"
+            variant="info"
+            className="px-4"
+            onClick={createBlogHandler}
+          >
             CREATE A POST
           </Button>
         </Link>
