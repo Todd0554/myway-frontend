@@ -35,31 +35,30 @@ export const router = [
     {
         path:"/blogs",
         element: BlogList,
-        children: [
-            {
-                path:"/:id",
-                element: BlogArticle
-            },
-            {
-                path:"/:id/create",
-                element: BlogForm
-            },
-        ]
+
+
+    },
+    {
+        path:"/blogs/:id",
+        element: BlogArticle
+    },
+    {
+        path:"/blogs/:id/create",
+        element: BlogForm
     },
 
     {
         path:"/sites",
         element: SitesList,
-        children: [
-            {
-                path:"/:id",
-                element: SiteDetail
-            },
-            {
-                path:"/:id/edit",
-                element: SiteForm
-            },
-        ]
+
+    },
+    {
+        path:"/sites/:id",
+        element: SiteDetail
+    },
+    {
+        path:"/sites/:id/edit",
+        element: SiteForm
     },
     {
         path:"/myhome",
